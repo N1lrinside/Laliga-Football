@@ -1,0 +1,18 @@
+{% extends 'teams/templates_teams.html' %}
+
+{% block title %}Реальная команда{% endblock %}
+{% block container %} <span class="filters-item">
+            <select class="filters-item-select" id="filter-id-teamId" name="team">
+                <option value="-1" selected="selected" label="Футбольные команды">Футбольные команды</option>
+                    {% for team in teams %}
+                        <option value="{{ team.id }}">{{ team.name }}</option>
+                    {% endfor %}
+            </select>
+
+        <select class="filters-item-select" id="schemes-id" name="team">
+            <option value="0" selected="szelected" label="Схема">Футбольные команды</option>
+            <option value="1" label="433">Real Madrid</option>
+            <option value="2" label="442">FC Barcelona</option>
+        </select>
+    </span>
+{% endblock %}
