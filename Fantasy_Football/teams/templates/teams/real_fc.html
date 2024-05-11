@@ -1,18 +1,58 @@
 {% extends 'teams/templates_teams.html' %}
-
 {% block title %}Реальная команда{% endblock %}
-{% block container %} <span class="filters-item">
-            <select class="filters-item-select" id="filter-id-teamId" name="team">
-                <option value="-1" selected="selected" label="Футбольные команды">Футбольные команды</option>
-                    {% for team in teams %}
-                        <option value="{{ team.id }}">{{ team.name }}</option>
-                    {% endfor %}
-            </select>
-
-        <select class="filters-item-select" id="schemes-id" name="team">
-            <option value="0" selected="szelected" label="Схема">Футбольные команды</option>
-            <option value="1" label="433">Real Madrid</option>
-            <option value="2" label="442">FC Barcelona</option>
+{% block container %}
+<form id="teamForm" method="post">
+    {% csrf_token %}
+    <input type="hidden" id="teamIdInput" name="team" value="{{ selected_team_id }}">
+    <span class="filters-item">
+        <select class="filters-item-select" id="filter-id-teamId" name="team">
+            {% for team in teams %}
+                <option value="{{ team.id }}" {% if team.id == selected_team_id %} selected {% endif %}>{{ team.name }}</option>
+            {% endfor %}
         </select>
     </span>
+    <input type="hidden" id="teamIdInputransfer" name="team_transfer" value="{{ selected_team_id_transfer }}">
+    <span class="transfer-players-from">
+        <select class="transfer-player" id="transfer-player-from" name="team_transfer">
+            {% for team in teams %}
+                <option value="{{ team.id }}" {% if team.id == selected_team_id_transfer %} selected {% endif %}>{{ team.name }}</option>
+            {% endfor %}
+        </select>
+    </span>
+    <span class="arrow">-&gt;</span>
+    <span class="transfer-players-into">
+        <select class="transfer-player" id="transfer-player-into">
+            {% for team in teams %}
+                <option value="{[ team.id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+    </span>
+    <span class="transfer-players-choise">
+        <select class="transfer-player" id="transfer-player-choise">
+            {% for footballer in transfers %}
+                    <option value="{[ footballer.id }}">{{ footballer.full_name }}</option>
+            {% endfor %}
+        </select>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+            var teamSelector = document.getElementById("filter-id-teamId");
+            var teamIdInput = document.getElementById("teamIdInput");
+            var teamIdInputransfer = document.getElementById("teamIdInputransfer");
+            // Сохраняем выбранное значение в локальном хранилище при изменении
+            teamSelector.addEventListener("change", function() {
+                teamIdInput.value = this.value;
+                teamIdInputransfer.value = this.value;
+                localStorage.setItem('selectedTeamId', this.value);
+                document.getElementById("teamForm").submit(); // Отправляем форму
+            });
+
+            // Восстанавливаем выбранное значение при загрузке страницы
+            var selectedTeamId = localStorage.getItem('selectedTeamId');
+            if (selectedTeamId) {
+                teamSelector.value = selectedTeamId;
+            }
+        });
+    </script>
 {% endblock %}

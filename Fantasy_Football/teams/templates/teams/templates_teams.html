@@ -4,41 +4,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'static_files/css/styleteams.css' %}">
 </head>
 <body>
+    <aside>
+        <img src="{% static 'static_files/img/la_liga-logo_brandlogos.net_e6gnt.png'%}" alt="Лого">
+        <span class="logo">Fantasy teams</span>
+        <h3>Навигация</h3>
+        <ul>
+            <a href="{% url 'home' %}"><li>Главная</li></a>
+            <a href="{% url 'fantasy-team' %}"><li>Фэнтези команда</li></a>
+            <a href="{% url 'real-team' %}"><li>Существующие команды</li></a>
+        </ul>
+    </aside>
     <div class="field-container">
-        <img src="https://img.freepik.com/free-vector/soccer-green-field_225004-1137.jpg?w=740&t=st=1714146628~exp=1714147228~hmac=45166af2c5ab9eeb2649c3d87b84e5f11dee698a026e32001a27dfc4dc7ed06d" alt="Football Field">
+        <h1> <img src="https://img.freepik.com/free-vector/soccer-green-field_225004-1137.jpg?w=740&t=st=1714146628~exp=1714147228~hmac=45166af2c5ab9eeb2649c3d87b84e5f11dee698a026e32001a27dfc4dc7ed06d" alt="Football Field"> </h1>
         <div class="player-buttons">
-            <div class="player-buttons-row">
-                <button class="lw">lw</button>
-                <button class="st">st</button>
+            <div class="player-buttons-row"> {# Нападающие #}
                 <button class="player-card">
                 <div class="player-info">
-        <span class="player-stat">POS</span>
-        <span class="player-stat">DEF</span>
-        <span class="player-stat">PHY</span>
-        <span class="player-stat">PAS</span>
-        <span class="player-stat">DRI</span>
-        <span class="player-stat">SHO</span>
+                    {% for footballer in footballers %}
+                    {% if footballer.POS == 'LW' %}
+                        <span class="player-rating">{{ footballer.rating }}</span>
+            <span class="player-position">{{ footballer.POS }}</span>
+            <span class="player-fullname">{{ footballer.full_name }}</span>
+            <span class="player-stat-name">PAC SHO PAS DRI DEF PHY</span>
+            <span class="player-stat">{{ footballer.PAC }}  {{ footballer.SHO }}  {{ footballer.PAS }}  {{ footballer.DRI }}  {{ footballer.DEF }}  {{ footballer.PHY }}</span>
+            <span class="player-club-country">{{ footballer.club }} / {{ footballer.country }}</span>
+                    {% endif %}
+                    {% endfor %}
+    </div>
+</button>
+                <button class="player-card">
+                <div class="player-info">
+                    {% for footballer in footballers %}
+                    {% if footballer.POS == 'ST' %}
+                        <span class="player-rating">{{ footballer.rating }}</span>
+            <span class="player-position">{{ footballer.POS }}</span>
+            <span class="player-fullname">{{ footballer.full_name }}</span>
+            <span class="player-stat-name">PAC SHO PAS DRI DEF PHY</span>
+            <span class="player-stat">{{ footballer.PAC }} {{ footballer.SHO }} {{ footballer.PAS }} {{ footballer.DRI }} {{ footballer.DEF }} {{ footballer.PHY }}</span>
+            <span class="player-club-country">{{ footballer.club }} / {{ footballer.country }}</span>
+                    {% endif %}
+                    {% endfor %}
+    </div>
+</button>
+                <button class="player-card">
+                <div class="player-info">
+                    {% for footballer in footballers %}
+                    {% if footballer.POS == 'RW' %}
+                        <span class="player-rating">{{ footballer.rating }}</span>
+            <span class="player-position">{{ footballer.POS }}</span>
+            <span class="player-fullname">{{ footballer.full_name }}</span>
+            <span class="player-stat-name">PAC SHO PAS DRI DEF PHY</span>
+            <span class="player-stat">{{ footballer.PAC }} {{ footballer.SHO }} {{ footballer.PAS }} {{ footballer.DRI }} {{ footballer.DEF }} {{ footballer.PHY }}</span>
+            <span class="player-club-country">{{ footballer.club }} / {{ footballer.country }}</span>
+                    {% endif %}
+                    {% endfor %}
     </div>
 </button>
             </div>
             <div class="player-buttons-row">
-                <button class="cm">cm</button>
-                <button class="cm">cm</button>
-                <button class="cm">cm</button>
+            {% for footballer in footballers %}
+            {% if footballer.POS == 'CM' %}
+            <button class="player-card">
+                <div class="player-info">
+                <span class="player-rating">{{ footballer.rating }}</span>
+                <span class="player-position">{{ footballer.POS }}</span>
+                <span class="player-fullname">{{ footballer.full_name }}</span>
+                <span class="player-stat-name">PAC SHO PAS DRI DEF PHY</span>
+                <span class="player-stat">{{ footballer.PAC }}  {{ footballer.SHO }}  {{ footballer.PAS }}  {{ footballer.DRI }}  {{ footballer.DEF }}  {{ footballer.PHY }}</span>
+                <span class="player-club-country">{{ footballer.club }} / {{ footballer.country }}</span>
+    </div>
+</button>
+                {% endif %}
+        {% endfor %}
             </div>
             <div class="player-buttons-row">
-                <button class="lb">lb</button>
-                <button class="cb">cb</button>
-                <button class="cb">cb</button>
-                <button class="rb">rb</button>
+                <button class="player-card">
+                <div class="player-info">
+                    {% for footballer in footballers %}
+                    {% if footballer.POS == 'LB' %}
+                        <span class="player-rating">{{ footballer.rating }}</span>
+            <span class="player-position">{{ footballer.POS }}</span>
+            <span class="player-fullname">{{ footballer.full_name }}</span>
+            <span class="player-stat-name">PAC SHO PAS DRI DEF PHY</span>
+            <span class="player-stat">{{ footballer.PAC }} {{ footballer.SHO }} {{ footballer.PAS }} {{ footballer.DRI }} {{ footballer.DEF }} {{ footballer.PHY }}</span>
+            <span class="player-club-country">{{ footballer.club }} / {{ footballer.country }}</span>
+                    {% endif %}
+                    {% endfor %}
+    </div>
+</button>
+                {% for footballer in footballers %}
+                {% if footballer.POS == 'CB' %}
+                <button class="player-card">
+                <div class="player-info">
+                <span class="player-rating">{{ footballer.rating }}</span>
+                <span class="player-position">{{ footballer.POS }}</span>
+                <span class="player-fullname">{{ footballer.full_name }}</span>
+                <span class="player-stat-name">PAC SHO PAS DRI DEF PHY</span>
+                <span class="player-stat">{{ footballer.PAC }}  {{ footballer.SHO }}  {{ footballer.PAS }}  {{ footballer.DRI }}  {{ footballer.DEF }}  {{ footballer.PHY }}</span>
+                <span class="player-club-country">{{ footballer.club }} / {{ footballer.country }}</span>
+            </div>
+        </button>
+        {% endif %}
+        {% endfor %}
+                <button class="player-card">
+                <div class="player-info">
+                    {% for footballer in footballers %}
+                    {% if footballer.POS == 'RB' %}
+                        <span class="player-rating">{{ footballer.rating }}</span>
+            <span class="player-position">{{ footballer.POS }}</span>
+            <span class="player-fullname">{{ footballer.full_name }}</span>
+            <span class="player-stat-name">PAC SHO PAS DRI DEF PHY</span>
+            <span class="player-stat">{{ footballer.PAC }} {{ footballer.SHO }} {{ footballer.PAS }} {{ footballer.DRI }} {{ footballer.DEF }} {{ footballer.PHY }}</span>
+            <span class="player-club-country">{{ footballer.club }} / {{ footballer.country }}</span>
+                    {% endif %}
+                    {% endfor %}
+    </div>
+</button>
             </div>
             <div class="player-buttons-row">
-                <button class="gk">gk</button>
+                <button class="player-card">
+                <div class="player-info">
+                    {% for footballer in footballers %}
+                    {% if footballer.POS == 'GK' %}
+                        <span class="player-rating">{{ footballer.rating }}</span>
+            <span class="player-position">{{ footballer.POS }}</span>
+            <span class="player-fullname">{{ footballer.full_name }}</span>
+            <span class="player-stat-name">DIV HAN KIC REF SPE POS</span>
+            <span class="player-stat">{{ footballer.PAC }} {{ footballer.SHO }} {{ footballer.PAS }} {{ footballer.DRI }} {{ footballer.DEF }} {{ footballer.PHY }}</span>
+            <span class="player-club-country">{{ footballer.club }} / {{ footballer.country }}</span>
+                    {% endif %}
+                    {% endfor %}
+    </div>
+</button>
             </div>
         </div>
     </div>

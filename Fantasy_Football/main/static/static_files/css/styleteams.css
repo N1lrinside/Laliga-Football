@@ -1,7 +1,49 @@
 body {
-    margin: 0;
-    padding: 0;
+    background: #2c2c2c;
 }
+
+aside{
+    float: left;
+    background: #181818;
+    width: 20%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+}
+
+aside img{
+    width: 80px;
+    float: left;
+}
+
+aside .logo{
+    font-size: 20px;
+    float: left;
+    font-weight: bold;
+    position: relative;
+    top: 25px;
+}
+
+aside h3{
+    margin-top: 100px;
+    font-size: 28px;
+}
+
+aside ul {list-style: None}
+aside ul li{
+    color: white;
+    display: block;
+    margin-top: 20px;
+    transition: transform .6s ease;
+}
+
+aside ul li:hover, aside ul a:hover{
+    color: yellow;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
 .field-container {
     display: flex;
     align-items: center;
@@ -10,7 +52,7 @@ body {
 }
 
 .player-buttons {
-    left: 12%;
+    left: 5%;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -19,7 +61,7 @@ body {
 
 .player-buttons-row {
     display: flex;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .player-buttons-row button {
@@ -29,12 +71,12 @@ body {
     font-size: 12px;
 }
 
-img {
-    left: 10%;
-    max-width: 40%;
-    height: auto;
+h1 img {
+    top: 0;
+    left: 5%;
+    width: 650px;
+    height: 100%;
     position: absolute;
-    z-index: 0;
 }
 .dropdown-container {
     width: 368px;
@@ -42,7 +84,7 @@ img {
     position: absolute;
     text-align: right;
     top: 50%;
-    left: 70%;
+    left: 85%;
     transform: translate(-50%, -50%);
     background-color: #f0f0f0; /* Серый цвет фона */
     padding: 10px; /* Параметр для добавления отступов вокруг содержимого */
@@ -53,29 +95,43 @@ img {
 }
 
 .player-card {
-    border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    width: 150px;
-    text-align: center;
+    width: 200px; /* Увеличил ширину карты для вмещения кнопки */
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .player-info {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
+.player-rating {
+    text-align: left;
+    font-size: 10px; /* Увеличил размер рейтинга */
+}
+.player-position{
+    text-align: left;
+    font-size: 10px; /* Увеличил размер рейтинга */
+}
+.player-fullname {
+    margin-top: 15px;
+    font-weight: bold; /* Добавил жирный шрифт для полного имени */
+}
+.player-stat-name{
+    margin-top: 5px;
+    text-align: center;
+    font-size: 10px;
+}
 .player-stat {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    background-color: #f0f0f0;
-    font-size: 14px;
-    margin-bottom: 5px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.player-club-country {
+    font-style: italic; /* Добавил курсив для клуба и страны */
+}
+ul span{
+    display: inline;
 }
 
